@@ -1,0 +1,59 @@
+# Change Log
+All notable changes to this software application will be documented in this file.
+- Software Editor  : BioNanoNMRI
+- Application Name : CILcare Detec-T
+
+## [1.1.1] - 2016-04-05
+	### Changed
+	- The onSaveRoiStatsButtonClicked callback method has been split in 2 - saveRoiStatsToTxt and saveRoiStatsToCsv - in order to
+		save ROI stats data in both pure text format (compatible with MS NotePad, Linux Gedit and Apple TextEdit) and CSV format
+		(compatible with MS Excel, OpenOffice Calc and Apple Numbers).
+	### Added
+	- All buttons except "Load DICOM..." button are now grayed out at startup until some DICOM file have been loaded.
+	- "Save Figure..." and "Save ROI Stats..." buttons are now grayed out until there are some ROI in memory, to be saved.
+	- A "ROI Color..." button now allows to change the ROI set color, before or after it is being drawn or loaded.
+	- A "Save Figure..." button now allows to export the final figure with its ROI as a JPG file (a bit buggy under MatLab R2012b
+		for Linux, works fine under MatLab R2016a for Mac OS).
+	- "Save ROI Stats" button now save data to both TXT and CSV files, CSV has been tested in OpenOffice and Numbers for Mac OS.
+	- CRoi class now implements a getArea method which counts the number of pixels in circular ROI object.
+
+## [1.1.0] - 2016-04-04
+	### Changed
+	- Application now provides a graphical user interface (GUI) with buttons and controls.
+	- ROI are now displayed with transparent red circles, more convenient than the previous blue contours.
+	- DICOM image is now displayed in a scrollable panel, providing true 100% zoom and an easier navigation.
+	- The onDrawRoiButtonClicked callback method has been decomposed to provide a rebuildRoiSet method which captures ROI set from
+		the mouse cursor if roiPositions parameter is empty.
+	### Added
+	- ROI are now displayed using transparency which can be adjusted using a slider. 
+	- ROI position (x,y) is now stored in CRoi object, getter method has been added to.
+	- ROI positions can now be saved in a .mat file and reloaded at any time.
+	- Changing the ROI diameter edit field now updates the currently displayed ROI on the fly.
+	- Changing the number of ROI edit field now clear all ROI, so that new ROI set can be drawn or loaded.
+	- The last used directory selected by the user via file dialog boxes is now memorized and reused for faster operation.
+	- File & dir dialog boxes now check if the user has cancel the current operation.
+
+## [1.0.3] - 2016-03-22
+	### Added
+	- TE values taken from images 1 and 2 are now printed in Stats text file with the T2 values computed in ROIs.
+
+## [1.0.2] - 2016-03-21
+	### Changed
+	- computeStats method removed in CRoi class, replaced by individual methods getMin, getMax, etc.
+	- computeStats method in CilcareDetecT class divided in 2 methods: computeStats and printStats.
+	- computeStats method only do the calculations.
+	- printStats methods only write stats data to text file.
+	### Added
+	- Min, max, and mean values measured in images are now stored as members of the CilcareDetecT class.
+	- Min, max, mean, etc. values measured in ROI are now stored as members of the CilcareDetecT class.
+	- TE values implemented as members of CilcareDetecT clas, extracted from DICOM info struct.
+	- T2 values computed from images 1 and 2 in ROI, then written to stats text file.
+
+## [1.0.1] - 2016-03-17
+	### Changed
+	- Default number of ROI has been increased from 6 to 9.
+
+## [1.0.0] - 2016-03-17
+	### Added
+	- First release of the application.
+	- Based on Yves Cazals' (Cilcare) MatLab script "AA_ImagePlusieursRdI_EllipsesFixes.m".
